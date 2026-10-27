@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Icon(Icons.man, color: Colors.orange, size: 30,),
                     SizedBox(width: 10),
-                    Text(_profile.name),
+                    Text("${_profile.name} ${_profile.apellits}"),
                     SizedBox(width: 100,),
                     Text(_profile.email)
                   ],
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () => Navigator.pushNamed(context, "/edit"),
+                  onPressed: () => Navigator.pushNamed(context, "/edit", arguments: _profile),
                   child: Text("Edit Profile")
                 ),
                 SizedBox(width: 10,),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () => Navigator.pushNamed(context, "/widgets", arguments: _profile),
+                  onPressed: () => Navigator.pushNamed(context, "/widgets"),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text("Explore Widget Showcase"),
