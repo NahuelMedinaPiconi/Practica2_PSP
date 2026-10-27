@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/screens/HomePage.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Practica",
-      home: Text("home")
+      initialRoute: "/",
+      routes: {
+        "/" :(context) => HomePage()
+      }
     );
   }
 }
