@@ -8,7 +8,7 @@ class Persona {
     _apellits = apellits ?? "Medina";
     _email = email ?? "exemple@exe.com";
     _adress = adress ?? "Casa exemple";
-    _birthDate = birthDate ?? DateTime.now();
+    _birthDate = birthDate ?? DateTime(-1);
     _password = password ?? "";
   }
 
@@ -47,6 +47,14 @@ class Persona {
   @override
   int get hashCode {
     return Object.hash(_name, _apellits, _email, _adress, _password, _birthDate);
+  }
+
+  @override
+  bool missSmth() {
+    if (_name == "" || _apellits == "" || _email == "" || _adress == "" || _password == "" || _birthDate == DateTime(-1) ) {
+      return true;
+    }
+    return false;
   }
 
 }
