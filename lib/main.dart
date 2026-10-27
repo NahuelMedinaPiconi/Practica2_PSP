@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/screens/HomePage.dart';
+import 'package:practica2/screens/PersonalScreen.dart';
+import 'package:practica2/screens/WidgetScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
       title: "Practica",
       initialRoute: "/",
       routes: {
-        "/" :(context) => HomePage()
+        "/" :(context) => HomePage(),
+        "/edit" : (context) => PersonalPage(),
+        "/widgets" : (context) => WidgetPage()
       }
     );
   }

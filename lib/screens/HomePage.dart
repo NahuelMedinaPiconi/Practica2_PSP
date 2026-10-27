@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, "/edit"),
                   child: Text("Edit Profile")
                 ),
                 SizedBox(width: 10,),
@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () => Navigator.pushNamed(context, "/", arguments: _profile),
+                  onPressed: () => Navigator.pushNamed(context, "/widgets", arguments: _profile),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text("Explore Widget Showcase"),
