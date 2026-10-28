@@ -219,7 +219,9 @@ class _PersonalPageState extends State<PersonalPage> {
           borderRadius: BorderRadius.circular(15),
         ),
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pop(context);
+      },
       child: Text("Cancel")
     );
   }
