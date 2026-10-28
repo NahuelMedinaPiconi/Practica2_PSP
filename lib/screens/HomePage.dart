@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:practica2/models/Persona.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   Persona _profile = new Persona.nou();
 
   @override
@@ -57,7 +62,14 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
-                  onPressed: () => Navigator.pushNamed(context, "/edit", arguments: _profile),
+                  onPressed: () => Navigator.pushNamed(context, "/edit", arguments: _profile)
+                  .then((value) {
+                    if (value != null) {
+                      setState(() {
+                        _profile = value as Persona;
+                      });
+                    }
+                  }),
                   child: Text("Edit Profile")
                 ),
                 SizedBox(width: 10,),
