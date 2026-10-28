@@ -169,6 +169,7 @@ class _PersonalPageState extends State<PersonalPage> {
     if (picked != null) {
       setState(() {
         _inputDateController.text = picked.toIso8601String().split("T")[0];
+        profile.birthDate = picked;
       });
     }
   }

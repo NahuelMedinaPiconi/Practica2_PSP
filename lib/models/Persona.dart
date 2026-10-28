@@ -49,7 +49,6 @@ class Persona {
     return Object.hash(_name, _apellits, _email, _adress, _password, _birthDate);
   }
 
-  @override
   bool missSmth() {
     if (_name == "" || _apellits == "" || _email == "" || _adress == "" || _password == "" || _birthDate == DateTime(-1) ) {
       return true;
