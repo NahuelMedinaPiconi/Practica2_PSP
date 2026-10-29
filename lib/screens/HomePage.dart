@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:practica2/models/Persona.dart';
 
 class HomePage extends StatefulWidget {
+  //Ha de ser statefull ja que, al retornar de la pagina d'editar, hem de canviar els valors de la persona amb un setState().
 
   @override
   State<HomePage> createState() => _HomePageState();
