@@ -1,9 +1,28 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WidgetPage extends StatelessWidget {
+class WidgetPage extends StatefulWidget {
+  @override
+  State<WidgetPage> createState() => _WidgetPageState();
+}
+
+class _WidgetPageState extends State<WidgetPage> {
   //La panatlla ha de ser statefull ja que utilitzam distints tipus d'animacions i canvis (con l'animated container)
-  const WidgetPage({super.key});
+  final TransformationController _imgController = TransformationController();
+  bool _imgInAction = false;
+
+  @override
+    void dispose() {
+    _imgController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _imgController.addListener(() {
+      print('Escala: ${_imgController.value.getMaxScaleOnAxis()}');
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +30,11 @@ class WidgetPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Widgets page"),
       ),
-      body: _crearExpansionTile(),
+      body: _crearExpansionTile(context),
     );
   }
 
-  Widget _crearExpansionTile() {
+  Widget _crearExpansionTile(BuildContext context) {
     return ListView(
       padding: EdgeInsets.symmetric(horizontal: 8),
       children: [
@@ -23,14 +42,17 @@ class WidgetPage extends StatelessWidget {
           leading: Icon(Icons.add_circle_outline),
           title: Text('Primer Widget: ExpansionTile'),
           subtitle: Text('Fes clic pel segon widget'),
+
           collapsedBackgroundColor: Colors.blueGrey,
-          backgroundColor: Colors.lightBlue,
+          backgroundColor: Colors.cyanAccent,
+
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5)
+            borderRadius: BorderRadius.circular(10)
           ),
           collapsedShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
+
           expansionAnimationStyle: AnimationStyle(
             duration: Duration(milliseconds: 600),
             reverseDuration: Duration(milliseconds: 400),
@@ -40,8 +62,9 @@ class WidgetPage extends StatelessWidget {
               padding: const EdgeInsets.all(30.0),
               child: Column(
                 children: [
-                  Text("ExpansionTile permet desplegar un widget dintre d'un altre."),
-                  _crearInteractiveViwer()
+                  Text("Segon Widget: InteractiveWidget. Proba a moure la imatge, ampliarla o ferla més petita"),
+                  SizedBox(height: 10,),
+                  _crearInteractiveViwer(context)
                 ],
               ),  
             ),
@@ -51,24 +74,42 @@ class WidgetPage extends StatelessWidget {
     );
   }
 
-  Widget _crearInteractiveViwer() {
+  Widget _crearInteractiveViwer(BuildContext context) {
     return Container(
       height: 350,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
+        color: Colors.lightBlue
       ),
       child: InteractiveViewer(
+        transformationController: _imgController,
         boundaryMargin: EdgeInsets.all(100),
-        minScale: 0.5,
-        maxScale: 4.0,
+        onInteractionEnd: (_) => _checkImgPosition(context),
+        minScale: 0.8,
+        maxScale: 1.5,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(12),
           child: Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhddvzkL8QugCtRugGj6Gs3tETMcxuHqN15q0QL3KvuckNILeDCBBxDtA&s=10",
             fit: BoxFit.cover
           ),
         )
       ),
     );
+  }
+
+  void _checkImgPosition(BuildContext context) async {
+    if (_imgInAction) return;
+
+    final translation = _imgController.value.getTranslation();
+    print("X: ${translation.x}, Y: ${translation.y}");
+
+    if (translation.x > 70 && translation.y > 70) {
+      _imgInAction = true;
+
+      await Navigator.pushNamed(context, "/");
+      _imgController.value = Matrix4.identity();
+      _imgInAction = false;
+    }
   }
 }
