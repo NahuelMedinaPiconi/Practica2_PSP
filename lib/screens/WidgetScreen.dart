@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WidgetPage extends StatefulWidget {
+  //Necesitam stateful per comprovar l'estat del trandormationController i enviar a l'usuari a altre pagina quan posi la imatge a la esquina
   @override
   State<WidgetPage> createState() => _WidgetPageState();
 }
@@ -14,14 +15,6 @@ class _WidgetPageState extends State<WidgetPage> {
     void dispose() {
     _imgController.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _imgController.addListener(() {
-      print('Escala: ${_imgController.value.getMaxScaleOnAxis()}');
-    });
   }
 
   @override
@@ -108,7 +101,7 @@ class _WidgetPageState extends State<WidgetPage> {
     if (translation.x > 70 && translation.y > 70) {
       _imgInAction = true;
 
-      await Navigator.pushNamed(context, "/");
+      await Navigator.pushNamed(context, "/slidable");
       _imgController.value = Matrix4.identity();
       _imgInAction = false;
     }
