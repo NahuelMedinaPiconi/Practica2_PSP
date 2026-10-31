@@ -64,7 +64,9 @@ class _WidgetPageState extends State<WidgetPage> {
                 children: [
                   Text("Segon Widget: InteractiveWidget. Proba a moure la imatge, ampliarla o ferla més petita"),
                   SizedBox(height: 10,),
-                  _crearInteractiveViwer(context)
+                  _crearInteractiveViwer(context),
+                  SizedBox(height: 10,),
+                  Text("Fes una proba, posa la imatge abaix a la dreta...")
                 ],
               ),  
             ),
@@ -102,7 +104,6 @@ class _WidgetPageState extends State<WidgetPage> {
     if (_imgInAction) return;
 
     final translation = _imgController.value.getTranslation();
-    print("X: ${translation.x}, Y: ${translation.y}");
 
     if (translation.x > 70 && translation.y > 70) {
       _imgInAction = true;

@@ -106,7 +106,7 @@ class _PersonalPageState extends State<PersonalPage> {
       keyboardType: TextInputType.emailAddress,
       onChanged: (valor) {
         setState(() {
-          profile.apellits = valor;
+          profile.email = valor;
         });
       },
       decoration: InputDecoration(
