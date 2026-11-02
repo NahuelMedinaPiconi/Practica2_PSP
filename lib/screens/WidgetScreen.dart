@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 class WidgetPage extends StatefulWidget {
-  //Necesitam stateful per comprovar l'estat del trandormationController i enviar a l'usuari a altre pagina quan posi la imatge a la esquina
+  //Necesitam stateful per comprovar l'estat del transformationController i enviar a l'usuari a altre pagina quan posi la imatge a la esquina
   @override
   State<WidgetPage> createState() => _WidgetPageState();
 }
 
 class _WidgetPageState extends State<WidgetPage> {
-  //La panatlla ha de ser statefull ja que utilitzam distints tipus d'animacions i canvis (con l'animated container)
   final TransformationController _imgController = TransformationController();
   bool _imgInAction = false;
 

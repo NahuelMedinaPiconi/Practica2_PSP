@@ -12,12 +12,16 @@ class PersonalPage extends StatefulWidget {
 class _PersonalPageState extends State<PersonalPage> {
 
   late Persona profile;
+  late Persona profileAntic;
+  bool primeraPasada = true;
   final TextEditingController _inputDateController = TextEditingController();
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     profile = ModalRoute.of(context)!.settings.arguments as Persona;
+    if (primeraPasada) profileAntic = profile.copy();
+    primeraPasada = false;
   }
 
   @override
@@ -182,7 +186,7 @@ class _PersonalPageState extends State<PersonalPage> {
         ),
       ),
       onPressed: () {
-        if (profile.missSmth()) {
+        if (!_allFieldsFiled()) {
           _showAlert(context);
         } else {
           Navigator.pop(context, profile);
@@ -191,6 +195,14 @@ class _PersonalPageState extends State<PersonalPage> {
       child: Text("Save and return")
     );
   }
+
+  bool _allFieldsFiled() {
+  return profile.name.trim().isNotEmpty &&
+      profile.apellits.trim().isNotEmpty &&
+      profile.email.trim().isNotEmpty &&
+      profile.password.isNotEmpty &&
+      _inputDateController.text.isNotEmpty;
+}
 
   void _showAlert(BuildContext context) {
     showDialog(

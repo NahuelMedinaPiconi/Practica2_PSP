@@ -40,16 +40,11 @@ class Persona {
         other._birthDate == _birthDate;
   }
 
+  Persona copy() => Persona.nou(name: name, apellits: apellits, email: email, password: password, birthDate: birthDate);
+
   @override
   int get hashCode {
     return Object.hash(_name, _apellits, _email, _password, _birthDate);
-  }
-
-  bool missSmth() {
-    if (_name == "" || _apellits == "" || _email == "" || _password == "" || _birthDate == DateTime(-1) ) {
-      return true;
-    }
-    return false;
   }
 
 }
