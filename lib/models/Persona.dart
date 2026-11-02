@@ -1,13 +1,12 @@
 class Persona {
 
-  late String _name, _apellits, _email, _adress, _password;
+  late String _name, _apellits, _email, _password;
   late DateTime _birthDate;
 
-  Persona.nou({String? name, String? apellits, String? email, String? adress, DateTime? birthDate, String? password}) {
+  Persona.nou({String? name, String? apellits, String? email, DateTime? birthDate, String? password}) {
     _name = name ?? "Nahuel";
     _apellits = apellits ?? "Medina";
     _email = email ?? "exemple@exe.com";
-    _adress = adress ?? "Casa exemple";
     _birthDate = birthDate ?? DateTime(-1);
     _password = password ?? "";
   }
@@ -15,20 +14,18 @@ class Persona {
   String get name => _name;
   String get apellits => _apellits;
   String get email => _email;
-  String get adress => _adress;
   String get password => _password;
   DateTime get birthDate => _birthDate;
 
   set name(String value) => _name = value;
   set apellits(String value) => _apellits = value;
   set email(String value) => _email = value;
-  set adress(String value) => _adress = value;
   set password(String value) => _password = value;
   set birthDate(DateTime value) => _birthDate = value;
 
   @override
   String toString() {
-    return 'Persona(name: $_name $_apellits, email: $_email, adress: $_adress, birthDate: $_birthDate)';
+    return 'Persona(name: $_name $_apellits, email: $_email, birthDate: $_birthDate)';
   }
 
   @override
@@ -39,18 +36,17 @@ class Persona {
         other._name == _name &&
         other._apellits == _apellits &&
         other._email == _email &&
-        other._adress == _adress &&
         other.password == _password &&
         other._birthDate == _birthDate;
   }
 
   @override
   int get hashCode {
-    return Object.hash(_name, _apellits, _email, _adress, _password, _birthDate);
+    return Object.hash(_name, _apellits, _email, _password, _birthDate);
   }
 
   bool missSmth() {
-    if (_name == "" || _apellits == "" || _email == "" || _adress == "" || _password == "" || _birthDate == DateTime(-1) ) {
+    if (_name == "" || _apellits == "" || _email == "" || _password == "" || _birthDate == DateTime(-1) ) {
       return true;
     }
     return false;

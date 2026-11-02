@@ -40,14 +40,14 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("${_profile.name} ${_profile.apellits}"),
+                      Text("${_profile.apellits},"),
                       Text(_profile.email)
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(_profile.adress),
+                      Text(_profile.name),
                       Text(_profile.birthDate.toIso8601String().split("T")[0]),
                     ],
                   )
