@@ -12,7 +12,7 @@ class PersonalPage extends StatefulWidget {
 class _PersonalPageState extends State<PersonalPage> {
 
   late Persona profile;
-  TextEditingController _inputDateController = new TextEditingController();
+  final TextEditingController _inputDateController = TextEditingController();
 
   @override
   void didChangeDependencies() {
@@ -199,6 +199,7 @@ class _PersonalPageState extends State<PersonalPage> {
       builder: (context) {
         return AlertDialog(
           title: Text("All fields must be filled"),
+
           actions: [
             TextButton(onPressed: ()=> Navigator.of(context).pop(), child: Text("Ok")),
           ],
